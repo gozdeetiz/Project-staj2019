@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Sistem</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 49%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#personel {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#personel th, #personel td {
+  text-align: left;
+  padding: 12px;
+}
+
+#personel tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#personel tr.header, #personel tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+</head>
+<body>
+<div align="center">
+
+     <h1 style="color:blue;">PersonelListesi</h1>
+     
+     
+     
+     <a href="/new"><button>YeniPersonelEkle</button></a>
+     <br/><br/>
+     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Personel_Adı">
+     <table id ="personel" border="1" cellpadding="10">
+          <thead>
+               <tr>
+                <!--  <th>Personel_Id</th> -->
+                  <th>Adı</th>
+                  <th>Soyadı</th>
+                  <th>Görevi</th>
+                  <th>Yaşı</th>  
+                  <th>İşe_Giriş_Tarihi</th>
+                  <th>İşten_Çıkış_Tarihi</th>
+                  <th>Görev_Aldığı_Projeler</th> 
+                  <th>Özgeçmiş</th>   
+                  <th>Aldığı_Sertifika</th>
+                  <th>Email</th>
+              </tr>       
+          </thead>
+          <tbody>
+              <tr th:each="personel: ${PersonelListesi}">
+               <!--  <td th:text="${personel.idpersonel}">Personel_Id</td> -->
+                  <td th:text="${personel.ad}">Adı</td>
+                  <td th:text="${personel.soyad}">Soyadı</td>
+                  <td th:text="${personel.gorev}">Görevi</td>
+                  <td th:text="${personel.yas}">Yaşı</td>
+                  <td th:text="${personel.isegiristarihi}">İşe_Giriş_Tarihi</td>
+                  <td th:text="${personel.istencikistarihi}">İşten_Çıkış_Tarihi</td>
+                  <td th:text="${personel.projeler}">Görev_Aldığı_Projeler</td>
+                  <td th:text ="${personel.ozgecmis}">Özgeçmiş</td>
+                  <td th:text="${personel.sertifika}">Aldığı_Sertifika</td>
+                  <td th:text="${personel.email}">Email</td>
+                  
+                  
+                  <td>
+        
+                  <a th:href="@{'/edit/'+${personel.idpersonel}}" ><button>Güncelle</button></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/delete/'+${personel.idpersonel}}"><button>Sil</button></a>     
+                         
+                  </td>   
+              </tr>  
+                  
+          </tbody>     
+     </table>
+     <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("personel");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+     
+     </div>
+</body>
+</html>
