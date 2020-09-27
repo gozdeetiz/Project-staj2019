@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>YeniPersonelEkle</title>
+
+</head>
+<body>
+<div align="center">
+<h1 style="color:blue;"> YeniPersonelEkle</h1>
+<br/>
+<form action="#" th:action="@{/save}" th:object="${personel}" method="post" >
+<table border="0" cellpading="10">
+
+   <tr>
+   <td>Personel_Id</td>
+   <td><input type="text" th:field="*{idpersonel}" readonly="readonly"/></td>
+   </tr>
+   
+   <tr>
+   <td>Adı:</td>
+     <td><input type="text" th:field="*{ad}" /></td>
+     </tr>
+     <tr>
+     <td>Soyadı:</td>
+     <td><input type="text" th:field="*{soyad}" /></td>
+     </tr>
+     <tr>
+     <td>Görevi:</td>
+     <td><input type="text" th:field="*{gorev}" /></td>
+     </tr>
+     <tr>
+     <td>Yaşı:</td>
+     <td><input type="number" th:field="*{yas}" /></td>
+     </tr> 
+       <tr>
+   <td>İşe_Giriş_Tarihi:</td>
+     <td><input type="date" th:field="*{isegiristarihi}" /></td>
+     </tr> 
+     
+   <tr>
+   <td>İşten_Çıkış_Tarihi:</td>
+   <td><input type="date" th:field="*{istencikistarihi}" /></td>   
+   </tr>  
+     
+     
+   <tr>
+   <td>Görev_Aldığı_Projeler: </td>
+   <td>
+      <input type="text" th:field="*{projeler}"/>        
+                     
+                          
+   </td>
+   </tr>
+          
+     <tr>
+     <td>Özgeçmiş</td>
+     <td><input type="file"  th:field="*{ozgecmis}" multiple accept="file_extension"/>
+     </td>
+     </tr>    
+     
+     <tr>
+     <td>Aldığı_Sertifika</td>
+     <td><input type="file" th:field="*{sertifika}" multiple accept="image/*"/>
+     
+     </td>
+     </tr> 
+     
+     <tr>
+     <td>Email</td>
+     <td><input type="email" id="email" placeholder="Enter email" name="email" th:field="*{email}"/></td>
+     </tr>   
+     
+                                
+     <tr>
+     <td colspan="2"><button type="submit">Kaydet</button> </td>
+     </tr>
+     
+     
+</table>
+
+
+</form>
+</div>
+
+</body>
+</html>
